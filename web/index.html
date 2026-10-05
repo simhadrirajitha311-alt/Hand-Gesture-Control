@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hand Gesture Control</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Touchless Computer Interaction</p>
+          <h1>Hand Gesture Control</h1>
+        </div>
+        <button id="cameraToggle" class="primary">Start Camera</button>
+      </header>
+
+      <main class="layout">
+        <section class="panel demo-panel">
+          <div class="camera-frame">
+            <video id="video" autoplay playsinline muted></video>
+            <canvas id="overlayCanvas"></canvas>
+            <div id="cursor" class="cursor"></div>
+          </div>
+
+          <div class="metrics-row">
+            <div class="metric-box">
+              <span class="label">Gesture</span>
+              <strong id="gestureValue">NONE</strong>
+            </div>
+            <div class="metric-box">
+              <span class="label">Status</span>
+              <strong id="statusValue">INACTIVE</strong>
+            </div>
+            <div class="metric-box">
+              <span class="label">Confidence</span>
+              <strong id="confidenceValue">0.00</strong>
+            </div>
+          </div>
+
+          <div class="control-strip">
+            <div class="volume-wrap">
+              <span>Volume</span>
+              <div class="meter"><div id="volumeFill" class="meter-fill"></div></div>
+            </div>
+            <div class="slide-wrap">
+              <span>Slide</span>
+              <strong id="slideCounter">01 / 04</strong>
+            </div>
+          </div>
+        </section>
+
+        <aside class="panel side-panel">
+          <div class="info-block">
+            <h2>Gesture instructions</h2>
+            <ul>
+              <li>Open palm for 1.5s to activate</li>
+              <li>Thumbs up: volume up</li>
+              <li>Thumbs down: volume down</li>
+              <li>Two fingers: next slide</li>
+              <li>One finger: previous slide</li>
+              <li>Pinch: click</li>
+              <li>Index move: cursor control</li>
+            </ul>
+          </div>
+
+          <div class="info-block">
+            <h2>Activation</h2>
+            <div id="activationPill" class="activation-pill inactive">INACTIVE</div>
+          </div>
+
+          <div class="info-block">
+            <h2>Browser note</h2>
+            <p>
+              Browser security prevents a normal web page from controlling the operating-system mouse,
+              keyboard, PowerPoint, or system volume. This demo simulates those actions locally in-browser.
+            </p>
+          </div>
+        </aside>
+      </main>
+
+      <section class="panel slide-panel">
+        <div class="slide-header">
+          <h2>Interactive demo presentation</h2>
+          <div class="nav-buttons">
+            <button id="prevSlide">Prev</button>
+            <button id="nextSlide">Next</button>
+          </div>
+        </div>
+        <div id="slideContent" class="slide-content"></div>
+      </section>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
